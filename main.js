@@ -1,6 +1,12 @@
 // 1.  a. You are given an array of numbers below
 //     b. Using reduce subtract all of the numbers in the array from an initial number 200
-    let numbers = [12, 3, 5, 3, 5, 4]
+    let numbers = [12, 3, 5, 3, 5, 4];
+
+    const subtract = function(arr) {
+        return arr.reduce((num, total) => num - total, 200);
+    }
+
+    subtract(numbers) //?
 
 // 2.  Add 500 to each bottle of red wine, then add all the red wine bottles together. Use all three methods we learned today and use method chaining.
     let data = [
@@ -42,6 +48,12 @@
     }
     ];
 
+    const wine = function(arr) {
+        arr.filter(bottle => bottle.wineColor === "red").map(reds => reds.numBottles + 500).reduce((count, total) => count + total, 0) //?
+    }
+
+    wine(data);
+
 // 3.  Just Averages
 //     - Using reduce, return an integer value for the average of all the index values and/or calculated values in an array.
 //     - If the Value is a String, use the character Code number for the first letter in the String.
@@ -51,6 +63,16 @@
       const nums2 = [11.12, 43, 56.22, 78, 98, 11]; // should be 49
       const nums3 = [2, 1222, 3444, 7254, 83.04444, 1111]; // should be 2186
       const nums4 = [2, 1222,'sneeze', 3444, 7254, 8, 'abacus']; //should be 1734
+
+    const average = function(arr1, arr2, arr3, arr4) {
+        let first = arr1.reduce((num, total) => num + total, 0) / arr1.length;
+        let second = arr2.reduce((num, total) => num + total, first) / arr2.length;
+        let third = arr3.reduce((num, total) => num + total, second) / arr3.length;
+        // return arr4.reduce((num, total) => typeof(num) === "string" ? num.charCodeAt(0) + total : num + total, third) / arr4.length;
+    }
+    
+    average(nums1, nums2, nums3, nums4);
+
 // 4.  Choose all the companies that started after 2000 and sort them ascending
 
     let businesses = [
@@ -63,12 +85,27 @@
             { company: 'Citibank', startYear: 2010 },
             ];
 
+    const sortComp = function(arr) {
+        let sorted = arr.filter(comp => comp.startYear > 2000); //?
+        return sorted.sort(function(a, b){return a.startYear - b.startYear}); //?
+    }
+    
+    sortComp(businesses);
+
 // 5.  COMPUTE INTEGERS
 
 //     - use the array methods to multiply all integers in an array by 5.
 //       [1,2,3,4] should be [5,10,15,20]
 //       [1,2,undefined,6] should be [5,10,30]
 //       [1,3,25.5,4,32.9] should be [5,15,20]
+
+let testArr = [1,3,25.5,4,32.9]
+
+const multi = function(arr) {
+    return arr.map(num => Number.isInteger(num) ? num * 5 : undefined).filter(numsOnly => numsOnly != undefined); //?
+}
+
+multi(testArr); //?
 
 // 6.
 
@@ -79,3 +116,4 @@
 // - The value in the object property should be the number of times a value appears in the original array.
   const arr1 = [5,3,2,5,6]; //should be {'5':2,'3':1,'2':1,'6':1}
   const arr2 = [3,1,2,5,2,5,7,5] // should be { '1': 1, '2': 2, '3': 1, '5': 3, '7': 1 }
+
