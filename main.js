@@ -65,13 +65,13 @@
       const nums4 = [2, 1222,'sneeze', 3444, 7254, 8, 'abacus']; //should be 1734
 
     const average = function(arr1, arr2, arr3, arr4) {
-        let first = arr1.reduce((num, total) => num + total, 0) / arr1.length;
-        let second = arr2.reduce((num, total) => num + total, first) / arr2.length;
-        let third = arr3.reduce((num, total) => num + total, second) / arr3.length;
-        // return arr4.reduce((num, total) => typeof(num) === "string" ? num.charCodeAt(0) + total : num + total, third) / arr4.length;
+        let first = arr1.reduce((total, num) => num + total, 0) / arr1.length; //?
+        let second = arr2.reduce((total, num) => num + total, first) / arr2.length; //?
+        let third = arr3.reduce((total, num) => num + total, second) / arr3.length; //?
+        return arr4.reduce((total, num) => typeof(num) === "string" ? num.charCodeAt(0) + total : num + total, 0) / arr4.length; //?
     }
     
-    average(nums1, nums2, nums3, nums4);
+    average(nums1, nums2, nums3, nums4); //?
 
 // 4.  Choose all the companies that started after 2000 and sort them ascending
 
@@ -109,7 +109,8 @@ multi(testArr); //?
 
 // 6.
 
-// - Count the number times the same element value appears in an array and display your answer in an object with the element as the key and the number of times as the value
+// - Count the number times the same element value appears in an array and display your answer in an 
+//    object with the element as the key and the number of times as the value
 // - Use reduce and use its second argument to initialize the empty object
 // - The properties in the object will have a string for the key and a number for the value
 // - The key in each property should be the value in the array we are counting.
@@ -117,3 +118,11 @@ multi(testArr); //?
   const arr1 = [5,3,2,5,6]; //should be {'5':2,'3':1,'2':1,'6':1}
   const arr2 = [3,1,2,5,2,5,7,5] // should be { '1': 1, '2': 2, '3': 1, '5': 3, '7': 1 }
 
+const countingNums = function(arr) {
+    return arr.reduce((total, num, index, arr) => {
+    ({[num]:(arr[index])}); //?
+    
+    })
+}
+
+countingNums(arr1) //?
